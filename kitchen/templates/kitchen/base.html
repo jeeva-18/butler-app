@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} {% endblock %} Kitchen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        .chat-messages{
+            height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body >
+    <nav class="bg-white shadow-md">
+        <div class="mx-auto max-w-screen-2xl px-2 sm:px-6 ">
+          <div class="relative flex h-16 items-center justify-between">
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div class="flex flex-shrink-0 items-center gap-x-1">
+                <a href="{% url 'kitchen:front' %}">
+                <p class="col text-red-500 text-2xl font-bold italic hover:not-italic">Butler</p></a>
+                <img class="mt-1.5 h-9 w-9 col " src="https://www.svgrepo.com/show/429166/chilli-food-fruit.svg?shade=500" alt="flavor">
+              </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'kitchen:dashboard' %}" class="text-red-500 hover:text-red-700">Dashboard</a>
+        
+                    <a href="{% url 'kitchen:logout' %}" class="px-5 py-3 text-white bg-red-500 rounded-xl border-2 hover:border-red-500 transition-all duration-500 hover:bg-white hover:text-red-500">Logout</a>
+
+                {% else %}
+                    <a href="{% url 'kitchen:login' %}" class="px-7 py-3 border-2 border-red-500 rounded-xl text-red-700 transition-all duration-500 hover:bg-red-500 hover:text-white">Login</a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+    </nav>
+    {% block content %}
+    
+    {% endblock %}
+
+    {% block scripts %}
+    
+    {% endblock %}
+    
+</body>
+
+</html>

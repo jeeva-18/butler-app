@@ -1,0 +1,17 @@
+{% extends 'Kitchen/base.html' %}
+
+{% block title %} Welcome | {% endblock %}
+
+
+{% block content %}
+
+<div class="p-10 lg:p-20 text-center">
+    {% if request.user.is_authenticated %}
+    <h1 class="text-3xl lg:text-6xl text-red-500">Welcome <span class="capitalize font-bold">{{request.user.username}}</span></h1>
+    {% else %}
+    <h1 class="text-3xl lg:text-6xl text-red-500">You are Not Logged In</h1>
+    {% endif %}
+</div>
+
+{% endblock %}
+

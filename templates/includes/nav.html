@@ -1,0 +1,21 @@
+<nav class="bg-white">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-5">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center gap-x-1">
+            <a href="{% url 'products:product_list' request.session.table_no%}">
+            <p class="col text-red-500 text-2xl font-bold italic hover:not-italic">Butler</p></a>
+            <img class="mt-1.5 h-9 w-9 col " src="https://www.svgrepo.com/show/429166/chilli-food-fruit.svg?shade=500" alt="flavor">
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <a href="{% url 'cart:cart_detail' %}">
+                <button type="button" class="relative rounded-full p-1  hover:outline-none hover:ring-2 hover:ring-red-500">
+                    <img class="h-9 w-9 " src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Shopping_Cart_Flat_Icon_Vector.svg/800px-Shopping_Cart_Flat_Icon_Vector.svg.png" alt="cart">
+                </button>
+            </a>
+        </div>
+      </div>
+    </div>
+</nav>
+  

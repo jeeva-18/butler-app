@@ -1,0 +1,43 @@
+{% extends 'Kitchen/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block content %}
+<div class="mx-auto flex justify-center">
+    <div class="bg-red-200 mt-5 p-3 rounded-xl">
+        <div class="flex justify-between gap-x-5">
+            <p class="uppercase font-semibold">{{order.full_name}}</p>
+            <div class="flex gap-x-3">
+                <p>DINE IN#{{id}}</p>
+                <p>&#128368;{{order.created_at | time}}</p>
+                <p>&#128197;{{order.created_at | date}}</p>
+                <img src="https://icons.veryicon.com/png/o/miscellaneous/common-home-icon/table-26.png" width="20" height="20">
+                <p>{{order.table_no}}</p>
+            </div>
+        </div>
+        <div class="py-5">
+            {%for item in order.items.all %}
+                    <div class="flex justify-between">
+                        <span class="capitalize">{{item.quantity}} X {{item.product.name}}</span>
+                        <span class="">₹{{item.get_cost}}</span>
+                    </div>
+            {%endfor%}
+        </div>
+        <p class="text-right mt-10">Total :₹{{order.get_total_cost |add:"4"}}.00</p>
+        <div class="flex gap-3 justify-center">
+            <form action="{% url 'kitchen:remove_order' order.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-600 rounded-3xl text-white p-3 hover:bg-red-400">REJECT</button>
+            </form>
+            <button class="bg-green-600 rounded-3xl text-white p-3 hover:bg-green-400">READY</button>
+        </div>
+    </div>
+
+</div>
+<div class="mg-auto flex justify-center mt-5">
+    <a href="{% url 'kitchen:dashboard' %}" class="text-center text-red-500">Back To Dashboard</a>
+</div>
+
+
+{% endblock %}

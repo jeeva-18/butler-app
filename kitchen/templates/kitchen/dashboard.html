@@ -1,0 +1,29 @@
+{% extends 'Kitchen/base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+
+{% block content %}
+
+    <div class="container mx-auto max-w-screen-lg px-5">
+        <h1 class="font-bold text-red-500 text-center py-5 text-5xl">Orders</h1>
+        <div class="flex flex-wrap gap-2 mt-4">
+            {% for order in orders %}
+            <a href="{% url 'kitchen:order_detail' order.id %}">
+                <div class="border-2 border-gray-200 rounded-xl p-2 min-w-24 shadow-md shadow-red-200 ">
+                    <p class="font-semibold">DINE IN</p>
+                    <p class="text-red-500">#{{order.id}}</p>
+                    <p>&#128368;{{order.created_at | time}}</p>
+                    <div class="flex gap-x-2">
+                        <img src="https://icons.veryicon.com/png/o/miscellaneous/common-home-icon/table-26.png" width="20" height="20">
+                        <p>{{order.table_no}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+
+{% endblock %}
